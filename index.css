@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+:root {
+  --blue_Dark: #0a0a22;
+  --blue_Of_Course: #63b3ed;
+  --purble_Of_Course: #9f7aea;
+  --yellow: #f6e05e;
+  --white: #edecec;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(180deg, #000011d4 0%, #001545 100%);
+  color: var(--white);
+  font-family: "Orbitron", sans-serif;
+  box-shadow: inset 0 0 15px 0 var(--white);
+  padding: 2.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(
+    var(--purble_Of_Course) 1px,
+    transparent 1px
+  );
+  background-size: 5px 5px;
+  animation: replaceColor 1s linear infinite;
+  animation: starsMove 8s linear infinite;
+  opacity: 0.2;
+}
+
+.headerTitlePage {
+  font-size: clamp(0.6rem, 2vw, 1.5rem);
+}
+.pDescription {
+  font-size: clamp(0.8rem, 2vw, 1.3rem);
+  padding: 1.5rem 1rem;
+  border-left: solid var(--purble_Of_Course);
+  max-width: 1650px;
+  margin: 0 auto;
+  background: var(--blue_Dark);
+}
+
+.pDescription::after {
+  content: "|";
+  animation: blink 0.5s infinite;
+  padding-left: 0.2rem;
+  font-size: 1.1rem;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+#secCardsPages {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  width: clamp(300px, 80vw, 100%);
+}
+
+/* Card */
+.cardOfProjects {
+  width: clamp(200px, 50vw, 350px);
+  height: clamp(300px, 50vw, 450px);
+  cursor: pointer;
+  border-radius: 0.7rem;
+  background-color: var(--back);
+  box-shadow: 0 0 30px var(--white), inset 0 0 20px var(--white);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s;
+  opacity: 0.7;
+  margin: 0 auto;
+
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 120%;
+  animation: previewSite 10s ease-in-out infinite alternate;
+}
+
+@keyframes previewSite {
+  0% {
+    background-position: top left;
+    background-size: 120%;
+  }
+  25% {
+    background-position: top right;
+    background-size: 130%;
+  }
+  50% {
+    background-position: center;
+    background-size: 110%;
+  }
+  75% {
+    background-position: bottom right;
+    background-size: 130%;
+  }
+  100% {
+    background-position: bottom left;
+    background-size: 120%;
+  }
+}
+
+.cardOfProjects:hover {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Conteúdo */
+.divTitleProject,
+.divDescription {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease;
+  color: var(--purble_Of_Course);
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(0.8rem, 3vw, 0.9rem);
+  z-index: 1;
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: var(--yellow);
+  border-radius: 1rem;
+}
+
+.divDescription {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+}
+
+.cardOfProjects:hover .divTitleProject {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.cardOfProjects:hover .divDescription {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  box-shadow: 0 0 5px var(--white), inset 0 0 5px var(--white);
+  backdrop-filter: blur(5px);
+}
